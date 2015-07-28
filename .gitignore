@@ -1,6 +1,14 @@
-composer.phar
-vendor/
+#Python
+*.pyc
 
-# Commit your application's lock file http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file
-# You may choose to ignore a library lock file http://getcomposer.org/doc/02-libraries.md#lock-file
-# composer.lock
+# Object file
+*.o
+
+# Ada Library Information
+*.ali
+
+#GH
+.DS_Store
+
+# Configuration Files
+features/environment.cfg
