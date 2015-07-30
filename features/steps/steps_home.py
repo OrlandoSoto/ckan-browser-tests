@@ -8,7 +8,7 @@ from pages.home import Home
 from pages.base import Base
 
 
-@given(u'I navigate to the Home page')
+@given(u'I navigate to the CKAN Home page')
 @handle_error
 def step(context):
     context.base.go()
