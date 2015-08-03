@@ -1,3 +1,4 @@
+# coding: utf-8
 from behave import given, when, then
 from hamcrest.core import assert_that
 from hamcrest.core.core.isequal import equal_to

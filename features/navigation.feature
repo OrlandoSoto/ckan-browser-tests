@@ -12,8 +12,14 @@ Scenario Outline: Test links in the CKAN page
    	And I should see "<expected_page_title>" displayed in the page title
 
 Examples:
-  | link_name     | expected_url    | expected_page_title |
-  | Datasets      | /dataset        | Datasets -          |
-  | Organizations | /organization   | Organizations -     |
-  | Groups        | /group          | Groups -            |
-  | About         | /about          | About -             |
+  | link_name                 | expected_url    | expected_page_title |
+  | Datasets                  | /dataset        | Datasets -          |
+  | Organizations             | /organization   | Organizations -     |
+  | Groups                    | /group          | Groups -            |
+  | About                     | /about          | About -             |
+  | Log in                    | /user/login     | Login -             |
+  | CKAN API                  | /docs.ckan.org/ | API guide           |
+  | Open Knowledge Foundation | /okfn.org       | Open Knowledge      |
+  | CKAN                      | /ckan.org/      | ckan                |
+
+
