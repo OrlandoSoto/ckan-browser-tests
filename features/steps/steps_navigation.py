@@ -25,11 +25,9 @@ def step(context, link_name):
     context.navigation.click_link(link_name)
 
 
-@then(u'I should see the "{relative_url}" URL with page title "{page_title}"')
+@then(u'I should see the "{relative_url}" URL in the address bar')
 @handle_error
-def step(context, relative_url, page_title):
+def step(context, relative_url):
     actual_url = context.base.get_current_url()
     assert_that(actual_url, contains_string(relative_url))
 
-    actual_page_title = context.base.get_page_title()
-    assert_that(actual_page_title, contains_string(page_title))

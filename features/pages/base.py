@@ -66,7 +66,7 @@ class Base(object):
         self.logger.info("Saving screenshot to %s" % full_path)
         self.driver.save_screenshot(full_path)
 
-    def get_page_title(self):
+    def get_page_title(self, page_title):
         return (self.driver.title)
 
     def get_current_url(self):
