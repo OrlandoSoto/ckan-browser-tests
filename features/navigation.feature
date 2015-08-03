@@ -9,11 +9,11 @@ Scenario Outline: Test links in the CKAN page
    Given I navigate to the CKAN Home page
    When I click on the "<link_name>" link
    Then I should see the "<expected_url>" URL in the address bar
-   	And I should see "<page_title>" displayed in the page title
+   	And I should see "<expected_page_title>" displayed in the page title
 
 Examples:
-  | link_name     | expected_url    | page_title      |
-  | Datasets      | /dataset        | Datasets -      |
-  | Organizations | /organization   | Organizations - |
-  | Groups        | /group          | Groups -        |
-  | About         | /about          | About -         |
+  | link_name     | expected_url    | expected_page_title |
+  | Datasets      | /dataset        | Datasets -          |
+  | Organizations | /organization   | Organizations -     |
+  | Groups        | /group          | Groups -            |
+  | About         | /about          | About -             |

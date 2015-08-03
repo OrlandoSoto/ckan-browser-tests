@@ -14,9 +14,9 @@ def step(context):
     context.base.go()
 
 
-@then(u'I should see "{page_title}" displayed in the page title')
+@then(u'I should see "{expected_page_title}" displayed in the page title')
 @handle_error
-def step(context, page_title):
-    # Verify that the page title matches the link we clicked
-    page_title = context.base.get_page_title(page_title)
-    assert_that(page_title, contains_string(page_title))
+def step(context, expected_page_title):
+    # Verify that the actual page title matches the expected title
+    actual_title = context.base.get_page_title(expected_page_title)
+    assert_that(actual_title, contains_string(expected_page_title))

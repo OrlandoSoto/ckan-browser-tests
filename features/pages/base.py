@@ -66,8 +66,15 @@ class Base(object):
         self.logger.info("Saving screenshot to %s" % full_path)
         self.driver.save_screenshot(full_path)
 
-    def get_page_title(self, page_title):
-        return (self.driver.title)
+    def get_page_title(self, expected_page_title):
+        # Some page transitions can be slow
+        # So we wait for the expected page title to appear
+        try:
+            WebDriverWait(self.driver, self.driver_wait)\
+                .until(EC.title_contains(expected_page_title))
+            return (self.driver.title)
+        except TimeoutException:
+            return (self.driver.title)
 
     def get_current_url(self):
         return (self.driver.current_url)
