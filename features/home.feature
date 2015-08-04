@@ -6,6 +6,11 @@ So that I can find the information I'm looking for
 Background:
    Given I navigate to the CKAN Home page
 
-@smoke_testing @landing_page
-Scenario: Testing landing page
+@smoke @home_page
+Scenario: Testing home page
+  Then I should see "Welcome -" displayed in the page title
+
+@search @home_page
+Scenario: Search
+  When I enter "qu" in the "Search data" field
   Then I should see "Welcome -" displayed in the page title

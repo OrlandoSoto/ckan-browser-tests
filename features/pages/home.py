@@ -11,3 +11,9 @@ class Home(Base):
                  driver=None, driver_wait=10, delay_secs=0):
         super(Home, self).__init__(logger, directory, base_url,
                                    driver, driver_wait, delay_secs)
+
+    def enter_search_term(self, search_term):
+    	xpath = "//input[@name='q' and @class='search']"
+        element = self.driver.find_element_by_xpath(xpath)
+
+        element.send_keys(search_term)

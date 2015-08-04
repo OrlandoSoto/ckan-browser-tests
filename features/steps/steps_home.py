@@ -15,6 +15,11 @@ def step(context):
     context.base.go()
 
 
+@When(u'I enter "{search_term}" in the "Search data" field')
+@handle_error
+def step(context, search_term):
+	context.home.enter_search_term(search_term)
+
 @then(u'I should see "{expected_page_title}" displayed in the page title')
 @handle_error
 def step(context, expected_page_title):
