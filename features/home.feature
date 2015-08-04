@@ -13,4 +13,5 @@ Scenario: Testing home page
 @search @home_page
 Scenario: Search
   When I enter "qu" in the "Search data" field
-  Then I should see "Welcome -" displayed in the page title
+  	And I click the search data button
+  Then I should see "Datasets - " displayed in the page title

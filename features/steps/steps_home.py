@@ -20,6 +20,11 @@ def step(context):
 def step(context, search_term):
 	context.home.enter_search_term(search_term)
 
+@When(u'I click the search data button')
+@handle_error
+def step(context):
+	context.home.click_btn_search_data()
+
 @then(u'I should see "{expected_page_title}" displayed in the page title')
 @handle_error
 def step(context, expected_page_title):
