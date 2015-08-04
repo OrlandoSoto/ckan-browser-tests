@@ -70,7 +70,7 @@ class Base(object):
         # Some page transitions can be slow
         # So we wait for the expected page title to appear
         try:
-            WebDriverWait(self.driver, self.driver_wait)\
+            WebDriverWait(self.driver, self.driver_wait, 100)\
                 .until(EC.title_contains(expected_page_title))
             return (self.driver.title)
         except TimeoutException:
