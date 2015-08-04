@@ -15,3 +15,4 @@ Scenario: Search
   When I enter "qu" in the "Search data" field
   	And I click the search data button
   Then I should see "Datasets - " displayed in the page title
+  	And I should see the Order By option set to "Relevance"

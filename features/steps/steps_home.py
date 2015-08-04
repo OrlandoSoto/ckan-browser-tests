@@ -25,9 +25,15 @@ def step(context, search_term):
 def step(context):
 	context.home.click_btn_search_data()
 
-@then(u'I should see "{expected_page_title}" displayed in the page title')
+@Then(u'I should see "{expected_page_title}" displayed in the page title')
 @handle_error
 def step(context, expected_page_title):
     # Verify that the actual page title matches the expected title
     actual_title = context.base.get_page_title(expected_page_title)
     assert_that(actual_title, contains_string(expected_page_title))
+
+@Then(u'I should see the Order By option set to "{selected_option}"')
+@handle_error
+def step(context, selected_option):
+	actual_selection = context.home.get_selected_order()
+	assert_that(actual_selection, equal_to(selected_option))

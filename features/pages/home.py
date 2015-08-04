@@ -6,6 +6,8 @@ from pages.base import Base
 
 # CSS LOCATORS
 btn_search_data = ".search-input button[type='submit']"
+option_selected = "#field-order-by option[selected='selected']"
+
 
 class Home(Base):
 
@@ -15,11 +17,15 @@ class Home(Base):
                                    driver, driver_wait, delay_secs)
 
     def enter_search_term(self, search_term):
-    	xpath = "//input[@name='q' and @class='search']"
+        xpath = "//input[@name='q' and @class='search']"
         element = self.driver.find_element_by_xpath(xpath)
 
         element.send_keys(search_term)
 
     def click_btn_search_data(self):
-    	element = self.driver.find_element_by_css_selector(btn_search_data)
-    	element.click()
+        element = self.driver.find_element_by_css_selector(btn_search_data)
+        element.click()
+
+    def get_selected_order(self):
+        element = self.driver.find_element_by_css_selector(option_selected)
+        return element.text
