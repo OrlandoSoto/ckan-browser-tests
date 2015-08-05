@@ -11,8 +11,7 @@ Scenario: Testing home page
   Then I should see "Welcome -" displayed in the page title
 
 @search @home_page
-Scenario: Search
+Scenario: Search in the homepage
   When I enter "qu" in the "Search data" field
   	And I click the search data button
   Then I should see "Datasets - " displayed in the page title
-  	And I should see the Order By option set to "Relevance"

@@ -12,6 +12,7 @@ from pages.base import Base
 from pages.home import Home
 from pages.navigation import Navigation
 from pages.utils import Utils
+from pages.datasets import Datasets
 
 
 try:
@@ -27,18 +28,20 @@ def before_all(context):
     setup_logger(context)
 
     if(fast_fail):
-        connection = httplib.HTTPConnection("build.consumerfinance.gov", timeout=10)
-        connection.request("GET", "/retirement")
+        connection = httplib.HTTPConnection("fake.ghe.domain",
+                                            timeout=10)
+        connection.request("GET", "/")
         page_response = connection.getresponse()
 
-        if page_response.status == 404:
-            raise Exception(str(page_response.status) + " " + page_response.reason)
+        if page_response.status != 200:
+            eMessage = str(page_response.status) + " " + page_response.reason
+            raise Exception(eMessage)
 
     if context.browser == 'Sauce':
         context.logger.info("Using Sauce Labs")
         desired_capabilities = {
             'name': os.getenv('SELENIUM_NAME',
-                              'Retirement browser tests ') + str(datetime.now()),
+                              'Retirement browser test') + str(datetime.now()),
             'platform': os.getenv('SELENIUM_PLATFORM', 'WINDOWS 7'),
             'browserName': os.getenv('SELENIUM_BROWSER', 'chrome'),
             'version': int(os.getenv('SELENIUM_VERSION', 33)),
@@ -51,7 +54,7 @@ def before_all(context):
             'idle-timeout': int(os.getenv('SELENIUM_IDLE_TIMEOUT', 10)),
             'tunnel-identifier': os.getenv('SELENIUM_TUNNEL'),
             'selenium-version': os.getenv('SELENIUM_LIB', '2.45.0'),
-            'screen-resolution' : os.getenv('SELENIUM_RESOLUTION', '1024x768')
+            'screen-resolution': os.getenv('SELENIUM_RESOLUTION', '1024x768')
         }
 
         context.logger.info("Running Sauce with capabilities: %s" %
@@ -77,6 +80,9 @@ def before_all(context):
     context.navigation = Navigation(context.logger, context.directory,
                                     context.base_url,
                                     driver, 10, context.delay_secs)
+    context.datasets = Datasets(context.logger, context.directory,
+                                context.base_url,
+                                driver, 10, context.delay_secs)
     context.screenshot = Screenshot(context.base, context.take_screenshots)
 
     context.utils = Utils(context.base)
@@ -120,14 +126,15 @@ def after_all(context):
 
         body_content = json.dumps({"passed": not context.failed})
         context.logger.info("Updating sauce job with %s" % body_content)
-        
-        # If a proxy is present then use it, otherwise connect directly to saucelabs
+
+        # If a proxy is present then use it
+        # Otherwise connect directly to saucelabs
         http_proxy = os.getenv('http_proxy', None)
         if http_proxy:
             if http_proxy.startswith("http://"):
                 http_proxy = http_proxy[7:]
             connection = httplib.HTTPConnection(http_proxy)
-        else:    
+        else:
             connection = httplib.HTTPConnection("saucelabs.com")
 
         connection.request('PUT', 'http://saucelabs.com/rest/v1/%s/jobs/%s' %
@@ -160,8 +167,8 @@ def setup_logger(context):
     logger.addHandler(ch)
     context.logger = logger
 
-
     context.logger.info('TEST ENVIRONMENT = %s' % context.base_url)
+
 
 def setup_config(context):
     config = ConfigParser.ConfigParser()

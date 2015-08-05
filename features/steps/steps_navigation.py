@@ -8,9 +8,11 @@ from pages.home import Home
 from pages.base import Base
 from pages.utils import Utils
 
-# XPATH LOCATORS
 
-# RELATIVE URL'S
+@given(u'I navigate to the CKAN Home page')
+@handle_error
+def step(context):
+    context.base.go()
 
 
 @given(u'I navigate to the Datasets page')
@@ -30,4 +32,3 @@ def step(context, link_name):
 def step(context, relative_url):
     actual_url = context.base.get_current_url()
     assert_that(actual_url, contains_string(relative_url))
-
