@@ -21,6 +21,12 @@ def step(context):
     context.base.go('/dataset')
 
 
+@given(u'I navigate to the Organizations page')
+@handle_error
+def step(context):
+    context.base.go('/organization')
+
+
 @when(u'I click on the "{link_name}" link')
 @handle_error
 def step(context, link_name):

@@ -22,7 +22,7 @@ Examples:
 Scenario Outline: Verify that search term appears in URL query string
   When I enter "<search-term>" in the "Search datasets" field
   	And I click the search datasets button
-  Then I should see "q=<search-term>" in the URL query string
+  Then I should see "q=<search-term>" in the Datasets URL query string
 
 Examples:
    | search-term |
@@ -32,9 +32,9 @@ Examples:
 Scenario Outline: Verify that sort order appears in URL query string
   Given I enter "qu" in the "Search datasets" field
   	And I click the search datasets button
-  When I select Order By "<sort-order>"
-  Then I should see the Order By option set to "<sort-order>"
-  	And I should see "sort=<sort-parameter>" in the URL query string
+  When I select Datasets Order By "<sort-order>"
+  Then I should see the Datasets Order By option set to "<sort-order>"
+  	And I should see "sort=<sort-parameter>" in the Datasets URL query string
 
 Examples:
    | sort-order      | sort-parameter         |

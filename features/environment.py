@@ -13,6 +13,7 @@ from pages.home import Home
 from pages.navigation import Navigation
 from pages.utils import Utils
 from pages.datasets import Datasets
+from pages.organizations import Organizations
 
 
 try:
@@ -83,6 +84,9 @@ def before_all(context):
     context.datasets = Datasets(context.logger, context.directory,
                                 context.base_url,
                                 driver, 10, context.delay_secs)
+    context.organizations = Organizations(context.logger, context.directory,
+                                          context.base_url,
+                                          driver, 10, context.delay_secs)
     context.screenshot = Screenshot(context.base, context.take_screenshots)
 
     context.utils = Utils(context.base)
@@ -141,7 +145,8 @@ def after_all(context):
                            (context.sauce_config['username'],
                             context.base.driver.session_id),
                            body_content,
-                           headers={"Authorization": "Basic %s" % base64string})
+                           headers={"Authorization": "Basic %s" %
+                                    base64string})
         result = connection.getresponse()
         context.logger.info(result.read())
         context.logger.info("Sauce update status: %s" % result.status)
