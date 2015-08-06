@@ -7,13 +7,14 @@ import base64
 from datetime import datetime
 from selenium import webdriver
 
-from pages.screenshot import Screenshot
 from pages.base import Base
 from pages.home import Home
 from pages.navigation import Navigation
-from pages.utils import Utils
 from pages.datasets import Datasets
 from pages.organizations import Organizations
+from pages.groups import Groups
+from pages.utils import Utils
+from pages.screenshot import Screenshot
 
 
 try:
@@ -42,7 +43,7 @@ def before_all(context):
         context.logger.info("Using Sauce Labs")
         desired_capabilities = {
             'name': os.getenv('SELENIUM_NAME',
-                              'Retirement browser test') + str(datetime.now()),
+                              'CKAN browser tests') + str(datetime.now()),
             'platform': os.getenv('SELENIUM_PLATFORM', 'WINDOWS 7'),
             'browserName': os.getenv('SELENIUM_BROWSER', 'chrome'),
             'version': int(os.getenv('SELENIUM_VERSION', 33)),
@@ -87,6 +88,9 @@ def before_all(context):
     context.organizations = Organizations(context.logger, context.directory,
                                           context.base_url,
                                           driver, 10, context.delay_secs)
+    context.groups = Groups(context.logger, context.directory,
+                            context.base_url,
+                            driver, 10, context.delay_secs)
     context.screenshot = Screenshot(context.base, context.take_screenshots)
 
     context.utils = Utils(context.base)
