@@ -15,10 +15,22 @@ def step(context, search_term):
     context.home.enter_search_term(search_term)
 
 
+@When(u'I enter "{search_term}" in the "Site Search data" field')
+@handle_error
+def step(context, search_term):
+    context.home.enter_site_search_term(search_term)
+
+
 @When(u'I click the search data button')
 @handle_error
 def step(context):
     context.home.click_btn_search_data()
+
+
+@When(u'I click the site search data button')
+@handle_error
+def step(context):
+    context.home.click_btn_site_wide_search()
 
 
 @Then(u'I should see "{expected_page_title}" displayed in the page title')

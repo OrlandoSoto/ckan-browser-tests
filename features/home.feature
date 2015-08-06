@@ -15,3 +15,9 @@ Scenario: Search in the homepage
   When I enter "qu" in the "Search data" field
   	And I click the search data button
   Then I should see "Datasets - " displayed in the page title
+
+@search @home_page
+Scenario: Site Search in the homepage
+  When I enter "qu" in the "Site Search data" field
+  	And I click the site search data button
+  Then I should see "Datasets - " displayed in the page title
