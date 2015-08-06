@@ -6,7 +6,6 @@ So that I can find the Datasets I'm looking for
 Background:
    Given I navigate to the Datasets page
 
-
 @smoke
 Scenario Outline: Search in the datasets page
   When I enter "<search-term>" in the "Search datasets" field
@@ -42,3 +41,11 @@ Examples:
    | Name Ascending  | title_string+asc       |
    | Name Descending | title_string+desc      |
    | Last Modified   | metadata_modified+desc |
+
+@smoke @sidebar
+Scenario: Check sidebar headings in the datasets page
+  Then I should see the heading "Legal Authority for Collection" displayed in the page sidebar
+    And I should see the heading "Organizations" displayed in the page sidebar
+    And I should see the heading "Groups" displayed in the page sidebar
+    And I should see the heading "Tags" displayed in the page sidebar
+    And I should see the heading "Formats" displayed in the page sidebar

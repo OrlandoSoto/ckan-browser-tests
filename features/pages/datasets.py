@@ -12,6 +12,9 @@ option_selected = "#field-order-by option[selected='selected']"
 # ELEMENT ID'S
 ddl_order_by = "field-order-by"
 
+# XPATH LOCATORS
+sidebar_header = "//h2[@class='module-heading']"
+
 
 class Datasets(Base):
 
@@ -38,3 +41,17 @@ class Datasets(Base):
     def get_sort_order(self):
         element = self.driver.find_element_by_css_selector(option_selected)
         return element.text
+
+    def is_header_present(self, header_text):
+
+        try:
+            elements = self.driver.find_elements_by_xpath(sidebar_header)
+            for element in elements:
+                self.logger.info("Header: %s" % element.text)
+                if(element.text == header_text):
+                    return True
+
+            return header_text + " Not found!"
+
+        except Exception:
+            return False

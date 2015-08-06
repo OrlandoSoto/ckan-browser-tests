@@ -40,3 +40,9 @@ def step(context, selected_option):
 def step(context, search_term):
     actual_url = context.base.get_current_url()
     assert_that(actual_url, contains_string(search_term))
+
+
+@then(u'I should see the heading "{header_text}" displayed in the page sidebar')
+def step(context, header_text):
+    bRsesult = context.datasets.is_header_present(header_text)
+    assert_that(bRsesult, equal_to(True))
