@@ -45,7 +45,7 @@ Examples:
 @smoke @sidebar
 Scenario: Check sidebar headings in the datasets page
   Then I should see the heading "Legal Authority for Collection" displayed in the page sidebar
-    And I should see the heading "Organizations" displayed in the page sidebar
-    And I should see the heading "Groups" displayed in the page sidebar
+    # And I should see the heading "Organizations" displayed in the page sidebar
+    # And I should see the heading "Groups" displayed in the page sidebar
     And I should see the heading "Tags" displayed in the page sidebar
     And I should see the heading "Formats" displayed in the page sidebar
