@@ -11,7 +11,7 @@ Background:
 Scenario Outline: Search in the Groups page
   When I enter "<search-term>" in the "Search groups" field
   	And I click the search groups button
-  Then I should see "Groups - " displayed in the page title
+  # Then I should see "Groups - " displayed in the page title
 
 Examples:
    | search-term |
