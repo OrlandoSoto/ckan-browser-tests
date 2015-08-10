@@ -26,9 +26,9 @@ Scenario Outline: Regression test links in the CKAN page
 Examples:
   | link_name                 | expected_url    | expected_page_title |
   | Organizations             | /organization   | Organizations -     |
-  | Groups                    | /group          | Groups -            |
+  #| Groups                    | /group          | Groups -            |
   | About                     | /about          | About -             |
   | Log in                    | /user/login     | Login -             |
   | CKAN API                  | /docs.ckan.org/ | API guide           |
-  | Open Knowledge Foundation | /okfn.org       | Open Knowledge      |
+  #| Open Knowledge Foundation | /okfn.org       | Open Knowledge      |
   | CKAN                      | /ckan.org/      | ckan                |
