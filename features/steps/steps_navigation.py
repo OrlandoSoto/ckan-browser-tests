@@ -26,6 +26,7 @@ def step(context):
 def step(context):
     context.base.go('/organization')
 
+
 @given(u'I navigate to the Groups page')
 @handle_error
 def step(context):

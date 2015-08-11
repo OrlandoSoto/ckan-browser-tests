@@ -42,7 +42,7 @@ def step(context, search_term):
     assert_that(actual_url, contains_string(search_term))
 
 
-@then(u'I should see the heading "{header_text}" displayed in the page sidebar')
-def step(context, header_text):
-    bRsesult = context.datasets.is_header_present(header_text)
+@then(u'I should see the heading "{header_txt}" displayed in the page sidebar')
+def step(context, header_txt):
+    bRsesult = context.datasets.is_header_present(header_txt)
     assert_that(bRsesult, equal_to(True))

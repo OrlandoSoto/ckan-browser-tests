@@ -49,7 +49,6 @@ class Base(object):
     def wait(self, driver_wait=default_driver_wait):
         return WebDriverWait(self.driver, driver_wait)
 
-
     def close_browser(self):
         self.utils.zzz(1)
         self.driver.quit()

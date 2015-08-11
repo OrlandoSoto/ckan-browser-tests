@@ -29,11 +29,11 @@ def step(context, sort_order):
     context.organizations.set_sort_order(sort_order)
 
 
-@then(u'I should see the Organizations Order By option set to "{selected_option}"')
+@then(u'I should see the Organizations Order By option set to "{selected_opt}"')
 @handle_error
-def step(context, selected_option):
+def step(context, selected_opt):
     actual_selection = context.organizations.get_sort_order()
-    assert_that(actual_selection, equal_to(selected_option))
+    assert_that(actual_selection, equal_to(selected_opt))
 
 
 @then(u'I should see "{search_term}" in the Organizations URL query string')

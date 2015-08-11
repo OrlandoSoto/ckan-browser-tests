@@ -1,6 +1,7 @@
 from datetime import datetime
 import sys
 
+
 def handle_error(fn):
     """
     Will save a screenshot of the current page if the method fails
