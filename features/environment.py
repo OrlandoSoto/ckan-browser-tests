@@ -138,13 +138,16 @@ def after_all(context):
         # If a proxy is present then use it
         # Otherwise connect directly to saucelabs
         http_proxy = os.getenv('http_proxy', None)
+        context.logger.info("Proxy is %s" % http_proxy)
+        
         if http_proxy:
             if http_proxy.startswith("http://"):
                 http_proxy = http_proxy[7:]
             connection = httplib.HTTPConnection(http_proxy)
         else:
             connection = httplib.HTTPConnection("saucelabs.com")
-
+        
+        connection.set_debuglevel(10)
         connection.request('PUT', 'http://saucelabs.com/rest/v1/%s/jobs/%s' %
                            (context.sauce_config['username'],
                             context.base.driver.session_id),
@@ -158,7 +161,7 @@ def after_all(context):
 
 def setup_logger(context):
     # create logger
-    logger = logging.getLogger('Retirement_browser_tests: ')
+    logger = logging.getLogger('ckan_browser_tests: ')
     logger.setLevel(context.log_level)
 
     # create console handler and set level to debug
