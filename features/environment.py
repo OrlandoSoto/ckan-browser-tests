@@ -148,7 +148,7 @@ def after_all(context):
             connection = httplib.HTTPConnection("saucelabs.com")
         
         connection.set_debuglevel(10)
-        connection.request('PUT', 'http://saucelabs.com/rest/v1/%s/jobs/%s' %
+        connection.request('PUT', '/rest/v1/%s/jobs/%s' %
                            (context.sauce_config['username'],
                             context.base.driver.session_id),
                            body_content,
