@@ -135,17 +135,11 @@ def after_all(context):
         body_content = json.dumps({"passed": not context.failed})
         context.logger.info("Updating sauce job with %s" % body_content)
 
-        # If a proxy is present then use it
-        # Otherwise connect directly to saucelabs
-        http_proxy = os.getenv('http_proxy', None)
-        if http_proxy:
-            if http_proxy.startswith("http://"):
-                http_proxy = http_proxy[7:]
-            connection = httplib.HTTPConnection(http_proxy)
-        else:
-            connection = httplib.HTTPConnection("saucelabs.com")
+        # If we need to go through a proxy server, see git history from August 2015 for the code to revert to
+        # See DEV-1109 in internal Jira for full discussion
 
-        connection.request('PUT', 'http://saucelabs.com/rest/v1/%s/jobs/%s' %
+        connection = httplib.HTTPConnection("saucelabs.com")
+        connection.request('PUT', '/rest/v1/%s/jobs/%s' %
                            (context.sauce_config['username'],
                             context.base.driver.session_id),
                            body_content,
@@ -158,7 +152,7 @@ def after_all(context):
 
 def setup_logger(context):
     # create logger
-    logger = logging.getLogger('Retirement_browser_tests: ')
+    logger = logging.getLogger('ckan_browser_tests: ')
     logger.setLevel(context.log_level)
 
     # create console handler and set level to debug
